@@ -178,6 +178,29 @@ window.addEventListener('DOMContentLoaded', () => {
             this.descr = descr;
             this.price = price;
             this.parent = document.querySelector(parentSelector);
+            this.transfer = 62;
+            this.changeToRUB(); // Вызывать методы можно в самом конструкторе.
+        }
+
+        changeToRUB() {
+            this.price = this.price * this.transfer;
+        }
+
+        render() {
+            const element = document.createElement('div');
+            element.innerHTML = `
+            <div class="menu__item">
+                <img src=${this.src} alt=${this.alt}>
+                <h3 class="menu__item-subtitle">${this.title}</h3>
+                <div class="menu__item-descr">${this.descr}</div>
+                <div class="menu__item-divider"></div>
+                <div class="menu__item-price">
+                    <div class="menu__item-cost">Цена:</div>
+                    <div class="menu__item-total"><span>${this.price}</span> руб/день</div>
+                </div>
+            </div>
+            `;
+            this.parent.append(element);
         }
     }
 });
